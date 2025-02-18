@@ -61,6 +61,7 @@
       padding-right: 1.5rem;
       color: #f1f1f1;
       background: transparent;
+      text-align: center;
     }
 
     button {
@@ -104,6 +105,17 @@
       text-decoration: none;
       font-weight: 700;
     }
+
+    .fade-in {
+      animation: fade-in-out 3s ease-in-out;
+    }
+
+    @keyframes fade-in-out {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
+    }
   </style>
 </head>
 
@@ -138,9 +150,11 @@
 
       const originalValue = input.value;
       input.value = "Code copied!";
+      input.classList.add("fade-in");
 
       setTimeout(() => {
         input.value = originalValue;
+        input.classList.remove("fade-in");
       }, 3000);
     }
   </script>
