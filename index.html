@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extract URL Code</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+    .container {
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    input[type="text"] {
+      width: 300px;
+      padding: 8px;
+      margin-right: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 8px 16px;
+      font-size: 16px;
+      color: white;
+      background-color: #007bff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <input type="text" id="codeInput" readonly placeholder="Code will appear here">
+    <button onclick="copyToClipboard()">Copy</button>
+  </div>
+
+  <script>
+    // Extract the "code" parameter from the URL
+    function getCodeFromURL() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('code');
+    }
+
+    // Display the code in the input field
+    const code = getCodeFromURL();
+    if (code) {
+      document.getElementById('codeInput').value = code;
+    }
+
+    // Function to copy the input field content to the clipboard
+    function copyToClipboard() {
+      const input = document.getElementById('codeInput');
+      input.select();
+      input.setSelectionRange(0, 99999); // For mobile devices
+      document.execCommand('copy');
+      alert('Code copied to clipboard!');
+    }
+  </script>
+</body>
+</html>
