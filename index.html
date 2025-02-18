@@ -1,170 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extract URL Code</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        font-family: "Helvetica Neue", "Segoe UI", "Arial", sans-serif;
+        background-color: #1f1f1f;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DonationAlerts Authorization Code Generator</title>
-  <style>
-    html, body {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
+      .content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-    body {
-      font-family: "Helvetica Neue", "Segoe UI", "Arial", sans-serif;
-      font-size: 10px;
-      background: #1f1f1f;
-      position: fixed;
-      top: 0;
-      left: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: auto;
-    }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        background-color: #262626;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border-radius: 3px;
-      background-color: #262626;
-      box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.01);
-      font-size: 14px;
-      font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-      line-height: 1.5;
-      color: #f1f1f1;
-      padding: 3rem;
-      width: 100%;
-      max-width: 500px;
-      box-sizing: border-box;
-    }
+      .form {
+        display: flex;
+        width: 100%;
+        gap: 1rem;
+        box-sizing: border-box;
+      }
 
-    .form {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      width: 100%;
-    }
+      input {
+        flex: 1;
+        height: 3.2rem;
+        font-size: 1.4rem;
+        padding: 0 1.5rem;
+        border: 1px solid #5a5a5a;
+        border-radius: 6px;
+        background: transparent;
+        color: #f1f1f1;
+      }
 
-    input {
-      flex: 1;
-      height: 3.2rem;
-      font-size: 1.4rem;
-      border-radius: 6px;
-      border: solid 1px #5a5a5a;
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-      color: #f1f1f1;
-      background: transparent;
-      text-align: center;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+      button {
+        flex-shrink: 0;
+        box-sizing: border-box;
+        padding: 0 1.5rem;
+        height: 3.2rem;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #fff;
+        background-image: linear-gradient(255deg, #f57d07, #f59c07);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
 
-    button {
-      height: 3.2rem;
-      padding: 0 1.5rem;
-      background-image: linear-gradient(255deg, #f57d07, #f59c07);
-      color: #fff;
-      font-weight: 700;
-      text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      user-select: none;
-      white-space: nowrap;
-      cursor: pointer;
-      letter-spacing: -0.5px;
-      font-size: 14px;
-      line-height: 1;
-      border: none;
-      box-shadow: none;
-      border-radius: 8px;
-    }
+      button:hover {
+        background-image: none;
+        background-color: #fff;
+        color: #f57d07;
+      }
 
-    button:hover {
-      background-image: none;
-      background-color: #fff;
-      color: #f57d07;
-    }
+      .footer {
+        font-size: 0.8rem;
+        color: #777;
+        text-align: center;
+        margin: 1rem 0;
+      }
 
-    .footer {
-      position: fixed;
-      bottom: 10px;
-      width: 100%;
-      text-align: center;
-      font-size: 0.8rem;
-      color: #262626;
-    }
+      .footer a {
+        color: #777;
+        text-decoration: none;
+        font-weight: 700;
+      }
 
-    .footer a {
-      color: #262626;
-      text-decoration: none;
-      font-weight: 700;
-    }
+      .fade-in {
+        animation: fade-in-out 3s ease-in-out;
+      }
 
-    .fade-in {
-      animation: fade-in-out 3s ease-in-out;
-    }
+      @keyframes fade-in-out {
+        0% {
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
 
-    @keyframes fade-in-out {
-      0% { opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { opacity: 0; }
-    }
-  </style>
-</head>
-
-<body>
-  <div class="container">
-    <div class="form">
-      <input type="text" id="codeInput" readonly placeholder="Code will appear here">
-      <button onclick="copyToClipboard()">Copy</button>
+  <body>
+    <div class="content">
+      <div class="container">
+        <div class="form">
+          <input
+            type="text"
+            id="codeInput"
+            readonly
+            placeholder="Code will appear here"
+          />
+          <button onclick="copyToClipboard()">Copy</button>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="footer">
-    This site has no affiliation with <a href="https://www.donationalerts.com" target="_blank">DonationAlerts.com</a> and is for authorization code generation only.
-  </div>
+    <div class="footer">
+      This site has no affiliation with
+      <a href="https://www.donationalerts.com" target="_blank"
+        >DonationAlerts.com</a
+      >
+      and is for authorization code generation only.
+    </div>
 
-  <script>
-    function getCodeFromURL() {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get("code");
-    }
+    <script>
+      function getCodeFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get("code");
+      }
 
-    const code = getCodeFromURL();
-    if (code) {
-      document.getElementById("codeInput").value = code;
-    }
+      const code = getCodeFromURL();
+      if (code) {
+        document.getElementById("codeInput").value = code;
+      }
 
-    function copyToClipboard() {
-      const input = document.getElementById("codeInput");
-      input.select();
-      input.setSelectionRange(0, 99999);
-      document.execCommand("copy");
+      function copyToClipboard() {
+        const input = document.getElementById("codeInput");
+        input.select();
+        document.execCommand("copy");
 
-      const originalValue = input.value;
-      input.value = "Code copied!";
-      input.style.textAlign = "center";
-      input.classList.add("fade-in");
+        const originalValue = input.value;
+        input.value = "Code copied!";
+        input.style.textAlign = "center";
+        input.classList.add("fade-in");
 
-      setTimeout(() => {
-        input.value = originalValue;
-        input.style.textAlign = "left";
-        input.classList.remove("fade-in");
-      }, 3000);
-    }
-  </script>
-</body>
-
+        setTimeout(() => {
+          input.value = originalValue;
+          input.style.textAlign = "left";
+          input.classList.remove("fade-in");
+        }, 3000);
+      }
+    </script>
+  </body>
 </html>
