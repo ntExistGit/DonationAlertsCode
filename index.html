@@ -1,73 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Extract URL Code</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f0f0f0;
-    }
-    .container {
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    input[type="text"] {
-      width: 300px;
-      padding: 8px;
-      margin-right: 8px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    button {
-      padding: 8px 16px;
-      font-size: 16px;
-      color: white;
-      background-color: #007bff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <input type="text" id="codeInput" readonly placeholder="Code will appear here">
-    <button onclick="copyToClipboard()">Copy</button>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DonationAlerts Authorization Code Generator</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
 
-  <script>
-    // Extract the "code" parameter from the URL
-    function getCodeFromURL() {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get('code');
-    }
+      body {
+        font-family: "Helvetica Neue", "Segoe UI", "Arial", sans-serif;
+        font-size: 10px;
+        background: #1f1f1f;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: auto;
+      }
 
-    // Display the code in the input field
-    const code = getCodeFromURL();
-    if (code) {
-      document.getElementById('codeInput').value = code;
-    }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 3px;
+        background-color: #262626;
+        box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.01);
+        font-size: 14px;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI,
+          Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+          Segoe UI Symbol;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #f1f1f1;
+        padding: 3rem;
+      }
 
-    // Function to copy the input field content to the clipboard
-    function copyToClipboard() {
-      const input = document.getElementById('codeInput');
-      input.select();
-      input.setSelectionRange(0, 99999); // For mobile devices
-      document.execCommand('copy');
-      alert('Code copied to clipboard!');
-    }
-  </script>
-</body>
+      .form {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      input {
+        flex: 1;
+        height: 3.2rem;
+        font-size: 1.4rem;
+        border-radius: 6px;
+        border: solid 1px #5a5a5a;
+        padding-left: 1.5rem;
+        color: #f1f1f1;
+        background: transparent;
+      }
+
+      button {
+        height: 3.2rem;
+        padding: 0 1.5rem;
+        background-image: linear-gradient(255deg, #f57d07, #f59c07);
+        color: #fff;
+        font-weight: 700;
+        text-transform: uppercase;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        white-space: nowrap;
+        cursor: pointer;
+        letter-spacing: -0.5px;
+        font-size: 14px;
+        line-height: 1;
+        border: none;
+        box-shadow: none;
+        border-radius: 8px;
+      }
+
+      button:hover {
+        background-image: none;
+        background-color: #fff;
+        color: #f57d07;
+      }
+
+      .footer {
+        position: fixed;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+        font-size: 0.8rem;
+        color: #5a5a5a;
+      }
+
+      .footer a {
+        color: #5a5a5a;
+        text-decoration: none;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="form">
+        <input
+          type="text"
+          id="codeInput"
+          readonly
+          placeholder="Code will appear here"
+        />
+        <button onclick="copyToClipboard()">Copy</button>
+      </div>
+    </div>
+
+    <div class="footer">
+      This site has no affiliation with
+      <a href="https://www.donationalerts.com" target="_blank"
+        >donationalerts.com</a
+      >
+      and is for authorization code generation only.
+    </div>
+
+    <script>
+      function getCodeFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get("code");
+      }
+
+      const code = getCodeFromURL();
+      if (code) {
+        document.getElementById("codeInput").value = code;
+      }
+
+      function copyToClipboard() {
+        const input = document.getElementById("codeInput");
+        input.select();
+        input.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        alert("Code copied to clipboard!");
+      }
+    </script>
+  </body>
 </html>
